@@ -14,7 +14,4 @@ public class HelloController {
         return "Login Page";
     }
 
-    @RequestMapping("/contact")
-    public String contact() { return "Contact Page"; }
-
 }
