@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
 
     @RequestMapping("/")
-    public String landing() { return "Greetings from Spring Boot!"; }
+    public String landing() { return "Hello World!"; }
 
     @RequestMapping("/login")
     public String login() {
         return "Login Page";
     }
-
-    @RequestMapping("/contact")
-    public String contact() { return "Contact Page"; }
 
 }
