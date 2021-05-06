@@ -41,13 +41,29 @@ public class UrlRestController {
         }
     }
 
+    @PostMapping(value="/generateexpired", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Url> generateUrl30daysValid(@RequestBody Url longUrl){
+        try{
+            Url resUrl = urlService.generateUrl(longUrl);
+            logger.info(resUrl.toString());
+            return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
+        }
+        catch(NullPointerException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping("/{shortUrl}")
     public RedirectView redirectToLongUrl(@PathVariable String shortUrl){
         Url resUrl = urlService.findByShortUrl(shortUrl);
         logger.info(resUrl.toString());
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl(resUrl.getLongUrl());
-        return redirectView;
+        if (urlService.isUrlValid(resUrl)) {
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl(resUrl.getLongUrl());
+            return redirectView;
+        }
+        return null;
     }
 
     @GetMapping("/unvalid/{id}")
