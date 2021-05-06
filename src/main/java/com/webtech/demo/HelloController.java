@@ -12,10 +12,10 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.logging.Logger;
 
 @RestController
-public class UrlRestController {
+public class HelloController {
 
     // Create a Logger
-    Logger logger = Logger.getLogger(UrlRestController.class.getName());
+    Logger logger = Logger.getLogger(HelloController.class.getName());
 
     @Autowired
     private UrlService urlService;
