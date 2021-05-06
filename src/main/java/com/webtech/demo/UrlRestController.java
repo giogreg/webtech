@@ -42,7 +42,6 @@ public class UrlRestController {
     }
 
     @GetMapping("/{shortUrl}")
-    @ResponseStatus(HttpStatus.OK)
     public RedirectView redirectToLongUrl(@PathVariable String shortUrl){
         Url resUrl = urlService.findByShortUrl(shortUrl);
         logger.info(resUrl.toString());

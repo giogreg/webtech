@@ -19,7 +19,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'com.google.guava:guava:30.1.1-jre'
+	//implementation 'com.google.guava:guava:30.1.1-jre'
 	runtimeOnly 'org.postgresql:postgresql'
 }
 
