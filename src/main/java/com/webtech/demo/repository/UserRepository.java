@@ -1,12 +1,12 @@
 package com.webtech.demo.repository;
 
-import com.webtech.demo.model.User;
+import com.webtech.demo.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<Users, Long> {
 
-    public User findUserById(long userID);
+    public Users findUserById(long userID);
 
 }
