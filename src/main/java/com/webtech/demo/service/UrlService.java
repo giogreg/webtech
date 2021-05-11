@@ -71,4 +71,16 @@ public class UrlService {
             return true;
         }
     }
+
+    public boolean validProvidedUrl(Url url){
+        if (!(url.getLongUrl().contains("https://")) || url.getLongUrl().contains("http://")){
+            url.setlongUrl("https://" + url.getLongUrl());
+        }
+        if (url.getLongUrl().contains(".")){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

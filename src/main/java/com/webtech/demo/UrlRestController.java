@@ -12,31 +12,36 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.logging.Logger;
 
 @RestController
-public class HelloController {
+public class UrlRestController {
 
     // Create a Logger
-    Logger logger = Logger.getLogger(HelloController.class.getName());
+    Logger logger = Logger.getLogger(UrlRestController.class.getName());
 
     @Autowired
     private UrlService urlService;
 
     @RequestMapping("/")
-    public String landing() { return "Landing Page"; }
+    public String landing() { return "landing page"; }
 
     @RequestMapping("/login")
     public String login() {
-        return "Login Page";
+        return "login page";
+    }
+
+    @RequestMapping("/unvalid")
+    public String unvalidInfo() {
+        return "unvalid url";
     }
 
     @PostMapping(value="/generate", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Url> generateShortLink(@RequestBody Url longUrl){
-        try{
+        if (urlService.validProvidedUrl(longUrl)) {
             Url resUrl = urlService.generateUrl(longUrl);
             logger.info(resUrl.toString());
             return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
         }
-        catch(NullPointerException e){
+        else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -44,12 +49,12 @@ public class HelloController {
     @PostMapping(value="/generateexpired", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Url> generateUrl30daysValid(@RequestBody Url longUrl){
-        try{
-            Url resUrl = urlService.generateUrl(longUrl);
+    if (urlService.validProvidedUrl(longUrl)) {
+            Url resUrl = urlService.generateUrl30daysValid(longUrl);
             logger.info(resUrl.toString());
             return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
         }
-        catch(NullPointerException e){
+        else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -57,19 +62,32 @@ public class HelloController {
     @GetMapping("/{shortUrl}")
     public RedirectView redirectToLongUrl(@PathVariable String shortUrl){
         Url resUrl = urlService.findByShortUrl(shortUrl);
-        logger.info(resUrl.toString());
+        RedirectView redirectView = new RedirectView();
+        if (resUrl == null){
+            redirectView.setUrl("/unvalid");
+            return redirectView;
+        }
         if (urlService.isUrlValid(resUrl)) {
-            RedirectView redirectView = new RedirectView();
+            logger.info(resUrl.toString());
             redirectView.setUrl(resUrl.getLongUrl());
             return redirectView;
         }
-        return null;
+        else {
+            redirectView.setUrl("/unvalid");
+            return redirectView;
+        }
     }
 
     @GetMapping("/unvalid/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Url> unvalid(@PathVariable long id){
-        Url resUrl = urlService.setGueltigBis(id);
-        return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
+        try {
+            Url resUrl = urlService.setGueltigBis(id);
+            logger.info("unvalid: " + resUrl.toString());
+            return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
+        }
+        catch (NullPointerException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
