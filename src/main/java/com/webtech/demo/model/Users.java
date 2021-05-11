@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Users {
 
     @Id @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private long id;
@@ -15,7 +15,7 @@ public class User {
     private String username;
     private String email;
 
-    public User(long id, String vorname, String nachname, String username, String email) {
+    public Users(long id, String vorname, String nachname, String username, String email) {
         this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -65,7 +65,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "Url{" +
+        return "User{" +
                 "userID=" + id +
                 ", vorname='" + vorname + '\'' +
                 ", nachname='" + nachname + '\'' +
