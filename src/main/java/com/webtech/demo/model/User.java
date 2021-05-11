@@ -10,6 +10,7 @@ public class User {
 
     @Id @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private long id;
+    @Lob
     private String vorname;
     private String nachname;
     private String username;
