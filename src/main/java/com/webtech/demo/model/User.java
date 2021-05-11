@@ -65,7 +65,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "Url{" +
+        return "User{" +
                 "userID=" + id +
                 ", vorname='" + vorname + '\'' +
                 ", nachname='" + nachname + '\'' +
