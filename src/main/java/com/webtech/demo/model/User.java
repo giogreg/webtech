@@ -1,15 +1,22 @@
 package com.webtech.demo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 
-    private long userID;
+    @Id @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private long id;
     private String vorname;
     private String nachname;
     private String username;
     private String email;
 
-    public User(long userID, String vorname, String nachname, String username, String email) {
-        this.userID = userID;
+    public User(long id, String vorname, String nachname, String username, String email) {
+        this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.username = username;
@@ -17,11 +24,11 @@ public class User {
     }
 
     public long getUserID() {
-        return userID;
+        return id;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public void setUserID(long id) {
+        this.id = id;
     }
 
     public String getVorname() {
@@ -59,7 +66,7 @@ public class User {
     @Override
     public String toString() {
         return "Url{" +
-                "userID=" + userID +
+                "userID=" + id +
                 ", vorname='" + vorname + '\'' +
                 ", nachname='" + nachname + '\'' +
                 ", username=" + username +
