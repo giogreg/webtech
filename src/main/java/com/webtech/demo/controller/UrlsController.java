@@ -1,5 +1,6 @@
 package com.webtech.demo.controller;
 
+import com.webtech.demo.config.Endpoints;
 import com.webtech.demo.model.Url;
 import com.webtech.demo.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class UrlsController{
         if (urlService.validProvidedUrl(longUrl)) {
             Url resUrl = urlService.generateUrl(longUrl);
             logger.info(resUrl.toString());
-            return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
+            return new ResponseEntity<>(resUrl, HttpStatus.CREATED);
         }
         else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -39,7 +40,7 @@ public class UrlsController{
     if (urlService.validProvidedUrl(longUrl)) {
             Url resUrl = urlService.generateUrl30daysValid(longUrl);
             logger.info(resUrl.toString());
-            return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
+            return new ResponseEntity<>(resUrl, HttpStatus.CREATED);
         }
         else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,7 +52,7 @@ public class UrlsController{
         Url resUrl = urlService.findByShortUrl(shortUrl);
         RedirectView redirectView = new RedirectView();
         if (resUrl == null){
-            redirectView.setUrl("/unvalid");
+            redirectView.setUrl(Endpoints.INVALID);
             return redirectView;
         }
         if (urlService.isUrlValid(resUrl)) {
@@ -60,18 +61,18 @@ public class UrlsController{
             return redirectView;
         }
         else {
-            redirectView.setUrl("/unvalid");
+            redirectView.setUrl(Endpoints.INVALID);
             return redirectView;
         }
     }
 
     @PutMapping("/urls/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Url> unvalid(@PathVariable long id){
+    public ResponseEntity<Url> invalid(@PathVariable long id){
         try {
             Url resUrl = urlService.setGueltigBis(id);
-            logger.info("unvalid: " + resUrl.toString());
-            return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
+            logger.info("invalid: " + resUrl.toString());
+            return new ResponseEntity<>(resUrl, HttpStatus.CREATED);
         }
         catch (NullPointerException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
