@@ -19,5 +19,6 @@ public class WebController {
     public ModelAndView showLoginPage() {return new ModelAndView(ViewNames.LOGIN); }
 
     @GetMapping(Endpoints.INVALID)
-    public ModelAndView invalidInfo() {return new ModelAndView(ViewNames.INVALID);}
+    public ModelAndView invalidInfo() {return new ModelAndView(ViewNames.INVALID); }
+  
 }

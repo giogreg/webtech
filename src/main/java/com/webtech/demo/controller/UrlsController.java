@@ -40,7 +40,7 @@ public class UrlsController{
     if (urlService.validProvidedUrl(longUrl)) {
             Url resUrl = urlService.generateUrl30daysValid(longUrl);
             logger.info(resUrl.toString());
-            return new ResponseEntity<>(resUrl, HttpStatus.CREATED);
+            return new ResponseEntity<Url>(resUrl, HttpStatus.CREATED);
         }
         else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
