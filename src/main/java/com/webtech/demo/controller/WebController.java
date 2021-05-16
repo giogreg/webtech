@@ -1,32 +1,24 @@
 package com.webtech.demo.controller;
 
-import org.springframework.ui.Model;
+import com.webtech.demo.config.Endpoints;
+import com.webtech.demo.config.ViewNames;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.logging.Logger;
-
-@RestController
+@Controller
 public class WebController {
 
-    // Create a Logger
-    Logger logger = Logger.getLogger(UrlsController.class.getName());
+    @GetMapping(Endpoints.INDEX)
+    public ModelAndView showIndexPage() { return new ModelAndView(ViewNames.INDEX); }
 
-    @GetMapping("/")
-    public String testPage(Model model) {
-        //model.addAttribute("test", "test123");
-        return "index";
-    }
+    @GetMapping(path = Endpoints.REGISTER)
+    public ModelAndView showRegisterPage() { return new ModelAndView(ViewNames.REGISTER); }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login page";
-    }
+    @GetMapping(path = Endpoints.LOGIN)
+    public ModelAndView showLoginPage() {return new ModelAndView(ViewNames.LOGIN); }
 
-    @RequestMapping("/unvalid")
-    public String unvalidInfo() {
-        return "unvalid url";
-    }
-
+    @GetMapping(Endpoints.INVALID)
+    public ModelAndView invalidInfo() {return new ModelAndView(ViewNames.INVALID); }
+  
 }
