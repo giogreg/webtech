@@ -14,13 +14,18 @@ public class Users {
     private String nachname;
     private String username;
     private String email;
+    private String password;
 
-    public Users(long id, String vorname, String nachname, String username, String email) {
+    public Users(long id, String vorname, String nachname, String username, String email, String password) {
         this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.username = username;
         this.email = email;
+    }
+
+    public Users(){
+
     }
 
     public long getUserID() {
@@ -63,6 +68,14 @@ public class Users {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -71,8 +84,7 @@ public class Users {
                 ", nachname='" + nachname + '\'' +
                 ", username=" + username +
                 ", email=" + email +
+                ", password=" + password +
                 '}';
     }
-
-
 }

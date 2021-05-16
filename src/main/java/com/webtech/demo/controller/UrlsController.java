@@ -1,4 +1,4 @@
-package com.webtech.demo;
+package com.webtech.demo.controller;
 
 import com.webtech.demo.model.Url;
 import com.webtech.demo.service.UrlService;
@@ -12,28 +12,15 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.logging.Logger;
 
 @RestController
-public class UrlRestController {
+public class UrlsController{
 
     // Create a Logger
-    Logger logger = Logger.getLogger(UrlRestController.class.getName());
+    Logger logger = Logger.getLogger(UrlsController.class.getName());
 
     @Autowired
     private UrlService urlService;
 
-    @RequestMapping("/")
-    public String landing() { return "landing page"; }
-
-    @RequestMapping("/login")
-    public String login() {
-        return "login page";
-    }
-
-    @RequestMapping("/unvalid")
-    public String unvalidInfo() {
-        return "unvalid url";
-    }
-
-    @PostMapping(value="/generate", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/urls", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Url> generateShortLink(@RequestBody Url longUrl){
         if (urlService.validProvidedUrl(longUrl)) {
@@ -46,7 +33,7 @@ public class UrlRestController {
         }
     }
 
-    @PostMapping(value="/generateexpired", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/eurls", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Url> generateUrl30daysValid(@RequestBody Url longUrl){
     if (urlService.validProvidedUrl(longUrl)) {
@@ -78,7 +65,7 @@ public class UrlRestController {
         }
     }
 
-    @GetMapping("/unvalid/{id}")
+    @PutMapping("/urls/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Url> unvalid(@PathVariable long id){
         try {
