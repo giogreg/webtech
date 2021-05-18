@@ -1,28 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
-    <title>Home Page</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Home</title>
 </head>
 <body>
-<div id="navTab" class="navTab">
-    <a class="navTabItem" href="">Create Account</a>
-    <text id="navSepOne" class="separator">|</text>
-    <a class="navTabItem" href="">Login</a>
-    <text id="navSepTwo" class="separator">|</text>
-    <a class="navTabItem" href="">Help</a>
-</div>
-<div id="indexContentHolder" class="indexContentHolder">
-    <div id="centerBar" class="centerBar">
-        <div id="formBoxContainer" class="formBoxContainer">
-            <form id="indexForm" class="formBox">
-                <label for="userURL" class="indexFormLabel">URL:</label>
-                <input class="indexFormInput" type="text" id="userURL" name="userURL">
-                <input class="indexFormButton" type="button" name="shortenButton" value="Create">
-            </form>
-        </div>
-    </div>
-</div>
+    <form id="indexForm" class="formBox">
+        <label for="userURL" class="indexFormLabel">URL:</label>
+        <input class="indexFormInput" type="text" id="userURL" name="userURL">
+        <input class="indexFormButton" type="button" name="shortenButton" value="Create">
+    </form>
 </body>
 </html>
