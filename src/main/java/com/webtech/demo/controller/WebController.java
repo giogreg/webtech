@@ -26,7 +26,7 @@ public class WebController {
 
 
     @PostMapping(path = Endpoints.INDEX)
-    public RedirectView renewIndexPage(Url longUrl){
+    public RedirectView handleNewUrlRequest(Url longUrl){
 
         if (urlService.validProvidedUrl(longUrl)) {
             urlService.generateUrl(longUrl);
@@ -40,7 +40,8 @@ public class WebController {
 
     @GetMapping(path = Endpoints.NEWURL)
     public ModelAndView showNewUrlPage(Model model) {
-
+        Url url = urlService.getLastEntry();
+        model.addAttribute("url", url);
         return new ModelAndView(ViewNames.NEWURL);
     }
 
