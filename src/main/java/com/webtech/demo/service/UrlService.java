@@ -56,6 +56,12 @@ public class UrlService {
         return url;
     }
 
+    public Url getLastEntry(){
+        int id = (int )urlRepository.count();
+        Url lastEntry = urlRepository.findById(id);
+        return lastEntry;
+    }
+
     public Url setGueltigBis(long id){
         Url url = urlRepository.findById(id);
         url.setGueltigBis(LocalDateTime.now());

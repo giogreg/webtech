@@ -6,10 +6,10 @@
     <title>Home</title>
 </head>
 <body>
-    <form id="indexForm" class="formBox">
+    <form id="indexForm" class="formBox" th:action="@{/}" th:object="${url}" method="post">
         <label for="userURL" class="indexFormLabel">URL:</label>
-        <input class="indexFormInput" type="text" id="userURL" name="userURL">
-        <input class="indexFormButton" type="button" name="shortenButton" value="Create">
+        <input class="indexFormInput" type="text" id="userURL" name="userURL" th:field="*{longUrl}">
+        <input class="indexFormButton" type="submit" name="shortenButton" value="Create">
     </form>
 </body>
 </html>
