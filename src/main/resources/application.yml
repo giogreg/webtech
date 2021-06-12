@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    username: ${DB_USER}
+    password: ${DB_PW}
+    url: ${DB_URL}
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    initialization-mode: always
+  jpa:
+    properties:
+      hibernate:
+        #the sql dialect makes hibernate generate better sql for the chosen database
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC
+    show-sql: false #set true for debugging
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update # {create, create-drop, validate,update}
+    open-in-view: false
+
