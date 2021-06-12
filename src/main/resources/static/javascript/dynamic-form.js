@@ -28,7 +28,7 @@ const app = Vue.createApp({
                     this.longUrl = '';
                     this.$refs.urlInput.focus();
                     this.show = true;
-                    this.shortUrl = 'http://localhost:8080/' + response.data.shortUrl;
+                    this.shortUrl = 'https://shortink.herokuapp.com/' + response.data.shortUrl;
 
                     let date = new Date(response.data.gueltigBis);
                     const options = { year: '2-digit', month: '2-digit', day: '2-digit' };
