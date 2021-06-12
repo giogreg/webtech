@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <title>Index</title>
     <meta charset="UTF-8">
+    <!--
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <title>Home</title>
+    -->
 </head>
 <body>
-    <form id="indexForm" class="formBox">
-        <label for="userURL" class="indexFormLabel">URL:</label>
-        <input class="indexFormInput" type="text" id="userURL" name="userURL">
-        <input class="indexFormButton" type="button" name="shortenButton" value="Create">
-    </form>
+    <h1>Index</h1>
+    <div id="app">
+    </div>
 </body>
 </html>

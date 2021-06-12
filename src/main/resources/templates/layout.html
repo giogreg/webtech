@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html th:fragment="layout (template)" lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <title>Shortink</title>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta id="Viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no, shrink-to-fit=no" />
+
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <title>Tiny Url</title>
+    <!-- Vue.js -->
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="#" th:src="@{/javascript/dynamic-form.js}" defer></script>
 </head>
 <body>
     <header>
         <div class="topPage">
             <div class="headerBox">
                 <a th:href="@{/}">
+                    <!--
                     <img th:src="@{/images/shortinklogo.png}"/>
+                    -->
                 </a>
             </div>
             <div id="navTab" class="navTab">
                 <a class="navTabItem" th:href="@{/register}">Create Account</a>
                 <text id="navSepOne" class="separator">|</text>
                 <a class="navTabItem" th:href="@{/login}">Login</a>
-                <text id="navSepTwo" class="separator">|</text>
+                <!--
+                <text id="navSepTwo" class="separator">|</text
                 <a class="navTabItem" th:href="@{https://www.google.de/}">Help</a>
+                -->
             </div>
         </div>
     </header>
