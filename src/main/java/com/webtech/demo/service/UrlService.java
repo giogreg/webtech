@@ -82,7 +82,7 @@ public class UrlService {
         if (!(url.getLongUrl().contains("https://")) || url.getLongUrl().contains("http://")){
             url.setlongUrl("https://" + url.getLongUrl());
         }
-        if (url.getLongUrl().contains(".")){
+        if (url.getLongUrl().contains(".") && !(url.getLongUrl().contains("shortink"))){
             return true;
         }
         else {

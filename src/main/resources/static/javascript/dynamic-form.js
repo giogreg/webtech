@@ -36,13 +36,14 @@ const app = Vue.createApp({
                 .then((response) =>{
                     this.longUrl = '';
                     this.shortUrl = 'https://shortink.herokuapp.com/' + response.data.shortUrl;
-                    this.show = true;
-                    this.$refs.urlCopy.focus();
                     let date = new Date(response.data.gueltigBis);
                     const options = { year: '2-digit', month: '2-digit', day: '2-digit' };
                     this.validDate = date.toLocaleDateString('de-DE', options);
+                    this.show = true;
+                    this.$refs.urlCopy.focus();
                 }, (error) => {
-                    console.log('No correct url');
+                    console.log('No valid url');
+                    this.longUrl = 'No valid Link - please try again'
                 })
         },
         copy() {
