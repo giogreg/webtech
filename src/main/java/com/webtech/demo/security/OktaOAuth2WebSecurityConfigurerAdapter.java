@@ -5,7 +5,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /*
-If you want the user to only have access to a route if they are signed in, require authentication for just those routes.
+require authentication for specific routes.
  */
 @Configuration
 class OktaOAuth2WebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
@@ -13,13 +13,18 @@ class OktaOAuth2WebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                // Require authentication for all requests under /api/private
-                .antMatchers("/api/private/**").authenticated()
+                // Require authentication for all requests under /manage
+                .antMatchers("/manage").authenticated()
+
+                // After we logout, redirect to root page
+                // by default Spring will send you to /login?logout
+                .and().logout().logoutSuccessUrl("/")
+
                 // enable OAuth2/OIDC
                 .and()
                 .oauth2Login();
     }
-
+    //always require login for all paths
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        // all routes protected
