@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /*
 require authentication for specific routes.
- */
+*/
 @Configuration
 class OktaOAuth2WebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
@@ -15,11 +15,9 @@ class OktaOAuth2WebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
         http.authorizeRequests()
                 // Require authentication for all requests under /manage
                 .antMatchers("/manage").authenticated()
-
                 // After we logout, redirect to root page
                 // by default Spring will send you to /login?logout
                 .and().logout().logoutSuccessUrl("/")
-
                 // enable OAuth2/OIDC
                 .and()
                 .oauth2Login();
