@@ -5,7 +5,6 @@ import com.webtech.demo.config.ViewNames;
 import com.webtech.demo.model.Url;
 import com.webtech.demo.service.UrlService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +29,7 @@ public class WebController {
 
         if (urlService.validProvidedUrl(longUrl)) {
             urlService.generateUrl(longUrl);
-            return new RedirectView(ViewNames.NEWURL);
+            return new RedirectView(ViewNames.INDEX);
         }
         else {
             return new RedirectView(ViewNames.INVALID);
@@ -38,18 +37,9 @@ public class WebController {
 
     }
 
-    @GetMapping(path = Endpoints.NEWURL)
-    public ModelAndView showNewUrlPage(Model model) {
-        Url url = urlService.getLastEntry();
-        model.addAttribute("url", url);
-        return new ModelAndView(ViewNames.NEWURL);
-    }
+    @GetMapping(path = Endpoints.MANAGE)
+    public ModelAndView showRegisterPage() { return new ModelAndView(ViewNames.MANAGE); }
 
-    @GetMapping(path = Endpoints.REGISTER)
-    public ModelAndView showRegisterPage() { return new ModelAndView(ViewNames.REGISTER); }
-
-    @GetMapping(path = Endpoints.LOGIN)
-    public ModelAndView showLoginPage() {return new ModelAndView(ViewNames.LOGIN); }
 
     @GetMapping(path = Endpoints.INVALID)
     public ModelAndView invalidInfo() {return new ModelAndView(ViewNames.INVALID); }
