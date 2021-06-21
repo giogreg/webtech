@@ -12,3 +12,13 @@ html body {
     margin-left: 4em;
 
 }
+
+.invalidWarning {
+    font-size: 4em;
+    text-align: center;
+}
+
+.returnHome{
+    font-size: 2em;
+    text-align: center;
+}
