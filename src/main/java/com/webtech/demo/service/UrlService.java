@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 @Component
@@ -56,12 +57,6 @@ public class UrlService {
         return url;
     }
 
-    public Url getLastEntry(){
-        int id = (int )urlRepository.count();
-        Url lastEntry = urlRepository.findById(id);
-        return lastEntry;
-    }
-
     public Url setGueltigBis(long id){
         Url url = urlRepository.findById(id);
         url.setGueltigBis(LocalDateTime.now());
@@ -89,4 +84,9 @@ public class UrlService {
             return false;
         }
     }
+
+    public List<Url> findAllByUserHash(String userHash){
+        return urlRepository.findAllByUserHash(userHash);
+    }
+
 }

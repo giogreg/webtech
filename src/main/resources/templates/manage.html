@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Management</title>
+    <script src="https://unpkg.com/vue-cookies@1.5.12/vue-cookies.js"></script>
 </head>
 <body>
-    <h1 class="text-light">Welcome Back</h1>
+    <h1 class="text-light">Welcome Back {{cookies}}</h1>
+    <script>
+        $cookies.set('cookie_name', 'cookie_value');
+    </script>
 </body>
 </html>

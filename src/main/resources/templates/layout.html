@@ -13,6 +13,8 @@
     <script src="https://unpkg.com/vue@next" defer></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.5.12/vue-cookies.js"></script>
+    <script src="#" th:src="@{/javascript/set-user.js}"></script>
     <script src="#" th:src="@{/javascript/dynamic-form.js}" defer></script>
 </head>
 <body>
@@ -24,8 +26,15 @@
                     Shortink
                 </a>
                 <div class="text-right">
-                    <a class="btn btn-outline-info" href="/oauth2/authorization/okta" role="button">Login</a>
-                    <a class="btn btn-outline-warning" href="https://dev-41601334.okta.com/signin/register" role="button">Registrieren</a>
+                    <div sec:authorize="isAnonymous()">
+                        <a class="btn btn-outline-info" href="/oauth2/authorization/okta" role="button">Login</a>
+                        <a class="btn btn-outline-warning" href="https://dev-95760264.okta.com/signin/register" role="button">Registrieren</a>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <form id="logout-form" method="POST" action="#" th:action="@{/logout}">
+                            <button type="submit" class="btn btn-outline-warning">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
