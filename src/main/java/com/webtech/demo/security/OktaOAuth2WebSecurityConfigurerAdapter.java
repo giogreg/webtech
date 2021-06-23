@@ -14,7 +14,6 @@ class OktaOAuth2WebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        // all routes protected
         http.authorizeRequests()
                 // Require authentication for all requests under /manage
                 // .anyRequest().authenticated()
