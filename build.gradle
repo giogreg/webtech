@@ -23,6 +23,7 @@ dependencies {
 	//okta
 	implementation 'com.okta.spring:okta-spring-sdk:2.0.1'
 	implementation 'com.okta.spring:okta-spring-boot-starter:2.0.1'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 }
 
 test {

@@ -13,17 +13,21 @@ class OktaOAuth2WebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
     //always require login for all paths
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         // all routes protected
-        // http.authorizeRequests()
+        http.authorizeRequests()
                 // Require authentication for all requests under /manage
                 // .anyRequest().authenticated()
-                //.antMatchers("/manage").authenticated()
+                .antMatchers(
+                        "/manage").authenticated()
                 // After we logout, redirect to root page
                 // by default Spring will send you to /login?logout
-                //.and().logout().logoutSuccessUrl("/")
+                .and().logout().logoutSuccessUrl("/")
                 // enable OAuth2/OIDC
-                // .and()
-                // .oauth2Login();
+                .and()
+                .oauth2Client()
+                .and()
+                .oauth2Login();
     }
 }
 

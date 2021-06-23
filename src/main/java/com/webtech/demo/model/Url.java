@@ -1,9 +1,5 @@
 package com.webtech.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -17,13 +13,15 @@ public class Url {
     private String shortUrl;
     private LocalDateTime gueltigVon;
     private LocalDateTime gueltigBis; //optional
+    private String userHash;
 
-    public Url(long id, String longUrl, String shortUrl, LocalDateTime gueltigVon, LocalDateTime gueltigBis) {
+    public Url(long id, String longUrl, String shortUrl, LocalDateTime gueltigVon, LocalDateTime gueltigBis, String userHash) {
         this.id = id;
         this.longUrl = longUrl;
         this.shortUrl = shortUrl;
         this.gueltigVon = gueltigVon;
         this.gueltigBis = gueltigBis;
+        this.userHash = userHash;
     }
 
     public Url(){
@@ -43,6 +41,10 @@ public class Url {
 
     public void setGueltigBis(LocalDateTime gueltigBis) {
         this.gueltigBis = gueltigBis;
+    }
+
+    public void setUserHash(String userHash) {
+        this.userHash = userHash;
     }
 
     public long getId() {
@@ -65,6 +67,10 @@ public class Url {
         return gueltigBis;
     }
 
+    public String getUserHash() {
+        return userHash;
+    }
+
     @Override
     public String toString() {
         return "Url{" +
@@ -73,6 +79,7 @@ public class Url {
                 ", shortUrl='" + shortUrl + '\'' +
                 ", gueltigVon=" + gueltigVon +
                 ", gueltigBis=" + gueltigBis +
+                ", userHash=" + userHash +
                 '}';
     }
 }

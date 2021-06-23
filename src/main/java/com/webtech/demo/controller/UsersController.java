@@ -9,11 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 class UsersController {
 
     @GetMapping("/users")
-    String helloUser(@AuthenticationPrincipal OidcUser user) {
-        if (user == null) {
-            return "no user";
-        } else {
-            return user.getAttribute("email");
+    OidcUser helloUser(@AuthenticationPrincipal OidcUser user) {
+            return user;
         }
-    }
 }
