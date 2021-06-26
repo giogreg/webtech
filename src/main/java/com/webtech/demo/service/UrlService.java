@@ -39,7 +39,7 @@ public class UrlService {
         return null;
     }
 
-    private String shortenUrl() {
+    public String shortenUrl() {
         Random r = new Random();
         String shortUrl = "";
         System.out.println();

@@ -18,7 +18,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'junit:junit:4.13.1'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//okta
 	implementation 'com.okta.spring:okta-spring-sdk:2.0.1'
@@ -29,3 +30,4 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
