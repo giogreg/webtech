@@ -36,10 +36,6 @@ public class WebController {
 
     }
 
-    @GetMapping(path = Endpoints.MANAGE)
-    public ModelAndView showRegisterPage() { return new ModelAndView(ViewNames.MANAGE); }
-
-
     @GetMapping(path = Endpoints.INVALID)
     public ModelAndView invalidInfo() { return new ModelAndView(ViewNames.INVALID); }
 

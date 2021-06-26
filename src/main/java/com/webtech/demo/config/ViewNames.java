@@ -4,7 +4,6 @@ public class ViewNames {
 
     public static final String INDEX = "index";
     public static final String INVALID = "invalid";
-    public static final String MANAGE = "manage";
 
 
 }

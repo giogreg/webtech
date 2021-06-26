@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -42,12 +43,12 @@ public class UrlService {
     private String shortenUrl() {
         Random r = new Random();
         String shortUrl = "";
-        System.out.println();
-        do{
         String alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        for (int i = 0; i < 6; i++) {
-            shortUrl += alphabet.charAt(r.nextInt(alphabet.length()));
-            }
+        do{
+            shortUrl = "https://shortink.herokuapp.com/";
+            for (int i = 0; i < 6; i++) {
+                shortUrl += alphabet.charAt(r.nextInt(alphabet.length()));
+                }
         } while (urlRepository.findByShortUrl(shortUrl) != null);
         return shortUrl;
     }
@@ -57,10 +58,9 @@ public class UrlService {
         return url;
     }
 
-    public Url setGueltigBis(long id){
+    public Url deleteUrl(long id){
         Url url = urlRepository.findById(id);
-        url.setGueltigBis(LocalDateTime.now());
-        urlRepository.save(url);
+        urlRepository.delete(url);
         return url;
     }
 
@@ -86,7 +86,9 @@ public class UrlService {
     }
 
     public List<Url> findAllByUserHash(String userHash){
-        return urlRepository.findAllByUserHash(userHash);
+        List<Url> urlList = urlRepository.findAllByUserHash(userHash);
+        Collections.reverse(urlList);
+        return urlList;
     }
 
 }

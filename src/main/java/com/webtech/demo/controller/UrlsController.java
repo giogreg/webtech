@@ -81,12 +81,12 @@ public class UrlsController{
         }
     }
 
-    @PutMapping("/urls/{id}")
+    @DeleteMapping("/urls/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Url> invalid(@PathVariable long id){
         try {
-            Url resUrl = urlService.setGueltigBis(id);
-            logger.info("invalid: " + resUrl.toString());
+            Url resUrl = urlService.deleteUrl(id);
+            logger.info("deleted: " + resUrl.toString());
             return new ResponseEntity<>(resUrl, HttpStatus.CREATED);
         }
         catch (NullPointerException e){
