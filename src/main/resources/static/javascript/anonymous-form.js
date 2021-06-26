@@ -1,11 +1,11 @@
-const app = Vue.createApp({
+const anonymousApp = Vue.createApp({
     template: `
         <div class="row rounded-3 p-3 mt-5 mx-5 bg-white text-dark">
             <div class="col">
                 <input type="text" class="form-control" v-model="longUrl" placeholder="Shorten your Link" ref="urlInput" @keyup.enter="create()">
             </div>
             <div class="col-auto">
-                <button type="button" class="btn btn-outline-info" @click="create()">Create</button>
+                <a role="button" class="btn btn-outline-info" @click="create()">Create</a>
             </div>
         </div>
         <div v-if="show">
@@ -14,7 +14,7 @@ const app = Vue.createApp({
                     <input type="text" class="form-control bg-white" v-model="shortUrl" readonly>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-outline-warning" ref="urlCopy" @click="copy()">Copy</button>
+                    <a role="button" class="btn btn-outline-warning" ref="urlCopy" @click="copy(shortUrl)">Copy</a>
                 </div>
             </div>
             <p class="info">Der Link ist bis zum {{validDate}} gültig. Um unbegrenzte Links zu erstellen, registrieren Sie sich bitte.</p>
@@ -31,25 +31,26 @@ const app = Vue.createApp({
     methods: {
         create() {
             axios.post('/eurls', {
-                longUrl: this.longUrl
+                longUrl: this.longUrl,
+                userHash: "anonymous",
             })
                 .then((response) =>{
                     this.longUrl = '';
-                    this.shortUrl = 'https://shortink.herokuapp.com/' + response.data.shortUrl;
+                    this.shortUrl = response.data.shortUrl;
+                    this.show = true;
                     let date = new Date(response.data.gueltigBis);
                     const options = { year: '2-digit', month: '2-digit', day: '2-digit' };
                     this.validDate = date.toLocaleDateString('de-DE', options);
-                    this.show = true;
-                    this.$refs.urlCopy.focus();
+
                 }, (error) => {
                     console.log('No valid url');
-                    this.longUrl = 'No valid Link - please try again'
+                    this.longUrl = 'No valid Link - please try again';
                 })
         },
-        copy() {
-            navigator.clipboard.writeText(this.shortUrl);
+        copy(shortUrl) {
+            navigator.clipboard.writeText(shortUrl);
         }
     }
 });
 
-app.mount('#app');
+anonymousApp.mount('#anonymousApp');

@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 @RestController
@@ -47,6 +49,19 @@ public class UrlsController{
         }
     }
 
+    @GetMapping(value="/urls/{userHash}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<Url>> invalid(@PathVariable String userHash){
+        List<Url> urlList = urlService.findAllByUserHash(userHash);
+        List<Url>validUrlList = new ArrayList();
+        for(Url url : urlList) {
+            if (urlService.isUrlValid(url)){
+                validUrlList.add(url);
+            }
+        }
+        return new ResponseEntity<>(validUrlList, HttpStatus.CREATED);
+    }
+
     @GetMapping("/{shortUrl}")
     public RedirectView redirectToLongUrl(@PathVariable String shortUrl){
         Url resUrl = urlService.findByShortUrl(shortUrl);
@@ -66,12 +81,12 @@ public class UrlsController{
         }
     }
 
-    @PutMapping("/urls/{id}")
+    @DeleteMapping("/urls/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Url> invalid(@PathVariable long id){
         try {
-            Url resUrl = urlService.setGueltigBis(id);
-            logger.info("invalid: " + resUrl.toString());
+            Url resUrl = urlService.deleteUrl(id);
+            logger.info("deleted: " + resUrl.toString());
             return new ResponseEntity<>(resUrl, HttpStatus.CREATED);
         }
         catch (NullPointerException e){
