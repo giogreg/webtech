@@ -7,4 +7,4 @@ Our web-application shortens long URLs. On the main page you can provide your lo
 If you create an Account, your URLs will not expire and will be displayed in your profile for future use.
 
 As an extra feature, you can create a qr-code of your short URLs, using the following API: https://rapidapi.com/ajith/api/qr-code-generator-with-multiple-datatypes-/
-**This feature is only avaible for account holders.**
+**This feature is only available for account holders.**
