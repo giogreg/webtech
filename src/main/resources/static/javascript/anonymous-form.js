@@ -5,7 +5,7 @@ const anonymousApp = Vue.createApp({
                 <input type="text" class="form-control" v-model="longUrl" placeholder="Shorten your Link" ref="urlInput" @keyup.enter="create()">
             </div>
             <div class="col-auto">
-                <a role="button" class="btn btn-outline-info" @click="create()">Create</a>
+                <a role="button" class="btn btn-info btn-width-110" @click="create()">Create</a>
             </div>
         </div>
         <div v-if="show">
@@ -14,7 +14,7 @@ const anonymousApp = Vue.createApp({
                     <input type="text" class="form-control bg-white" v-model="shortUrl" readonly>
                 </div>
                 <div class="col-auto">
-                    <a role="button" class="btn btn-outline-warning" ref="urlCopy" @click="copy(shortUrl)">Copy</a>
+                    <a role="button" class="btn btn-warning btn-width-110" ref="urlCopy" @click="copy(shortUrl)">Copy</a>
                 </div>
             </div>
             <p class="info">Der Link ist bis zum {{validDate}} gültig. Um unbegrenzte Links zu erstellen, registrieren Sie sich bitte.</p>

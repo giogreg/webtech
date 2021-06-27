@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 @RestController
@@ -53,13 +52,8 @@ public class UrlsController{
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Url>> invalid(@PathVariable String userHash){
         List<Url> urlList = urlService.findAllByUserHash(userHash);
-        List<Url>validUrlList = new ArrayList();
-        for(Url url : urlList) {
-            if (urlService.isUrlValid(url)){
-                validUrlList.add(url);
-            }
-        }
-        return new ResponseEntity<>(validUrlList, HttpStatus.CREATED);
+        logger.info("fetch urlList: " + userHash);
+        return new ResponseEntity<>(urlList, HttpStatus.CREATED);
     }
 
     @GetMapping("/{shortUrl}")

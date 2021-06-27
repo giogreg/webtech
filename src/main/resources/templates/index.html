@@ -26,13 +26,13 @@
                 Shortink
             </a>
             <div>
-                <div class="mx-1" sec:authorize="isAnonymous()">
-                    <a role="button" class="btn btn-outline-info" href="/oauth2/authorization/okta">Login</a>
-                    <a role="button" class="btn btn-outline-warning" href="https://dev-95760264.okta.com/signin/register">Registrieren</a>
+                <div sec:authorize="isAnonymous()">
+                    <a role="button" class="btn btn-outline-info btn-width-110 mx-1" href="/oauth2/authorization/okta">Login</a>
+                    <a role="button" class="btn btn-outline-warning btn-width-110" href="https://dev-95760264.okta.com/signin/register">Registrieren</a>
                 </div>
-                <div class="mx-1" sec:authorize="isAuthenticated()">
+                <div sec:authorize="isAuthenticated()">
                     <form id="logout-form" method="POST" action="#" th:action="@{/logout}">
-                        <button type="submit" class="btn btn-outline-warning">Logout</button>
+                        <button type="submit" class="btn btn-outline-warning btn-width-110">Logout</button>
                     </form>
                 </div>
             </div>

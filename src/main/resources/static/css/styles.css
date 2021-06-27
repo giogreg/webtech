@@ -16,3 +16,16 @@ html body {
 .btn-space {
     margin-right: 0.25em;
 }
+
+.btn-width-95 {
+    width: 95px;
+}
+
+.btn-width-110 {
+    width: 110px;
+}
+
+.img-con {
+    display: flex;
+    justify-content: center;
+}
