@@ -15,12 +15,6 @@ As an extra feature, you can create a qr-code of your short URLs, using the foll
 
 Deployed on heroku: <https://shortink.herokuapp.com>
 
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`RAPIAPI_KEY`
-
 ## Running Tests
 
 To run tests, run the following command
