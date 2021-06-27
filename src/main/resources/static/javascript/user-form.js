@@ -62,7 +62,7 @@ const userApp = Vue.createApp({
                 url: 'https://codzz-qr-cods.p.rapidapi.com/getQrcode',
                 params: {value: this.urls[index].shortUrl, type: 'url'},
                 headers: {
-                    'x-rapidapi-key': '4a97de30e4msh175716723bce70dp1dc769jsnf919f9025b27',
+                    'x-rapidapi-key': '4a97de30e4msh175716723bce70dp1dc769jsnf919f9025b27', //process.env.RAPIAPI_KEY,//
                     'x-rapidapi-host': 'codzz-qr-cods.p.rapidapi.com'
                 }
             };
@@ -70,7 +70,6 @@ const userApp = Vue.createApp({
             axios.request(options)
                 .then((response) => {
                     this.urls[index].qrSrc = response.data.url;
-                    //console.log(qrSrc);
                 }, (error) => {
                     console.error(error);
                 })
@@ -85,7 +84,6 @@ const userApp = Vue.createApp({
                     this.urls.unshift(response.data);
                     this.urls[0].buttonName = 'QR-Code';
                     this.urls[0].show = false;
-                    //this.urls[0].qrSrc = this.createQrCode(this.urls[0].shortUrl);
                 }, (error) => {
                     console.log('No valid url');
                     this.longUrl = 'No valid Link - please try again'
@@ -106,7 +104,6 @@ const userApp = Vue.createApp({
                 this.urls[index].show = false;
             } else {
                 this.createQrCode(index);
-                console.log(this.urls[index].qrSrc)
                 this.urls[index].buttonName = 'Close';
                 this.urls[index].show = true;
             }
