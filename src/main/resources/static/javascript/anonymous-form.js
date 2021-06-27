@@ -21,6 +21,8 @@ const anonymousApp = Vue.createApp({
         </div>
     `,
     data() {
+
+
         return {
             show: false,
             longUrl: '',
@@ -31,8 +33,12 @@ const anonymousApp = Vue.createApp({
     methods: {
         create() {
             axios.post('/eurls', {
-                longUrl: this.longUrl,
+                longUrl: this.longUrl
                 userHash: "anonymous",
+            })
+                .then((response) =>{
+                    this.longUrl = '';
+                    this.shortUrl = response.data.shortUrl;
             })
                 .then((response) =>{
                     this.longUrl = '';

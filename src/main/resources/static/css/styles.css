@@ -29,3 +29,13 @@ html body {
     display: flex;
     justify-content: center;
 }
+
+.invalidWarning {
+    font-size: 4em;
+    text-align: center;
+}
+
+.returnHome{
+    font-size: 2em;
+    text-align: center;
+}
