@@ -26,8 +26,8 @@ jobs:
         with:
           node-version: 16.2.0
       - name: Install Dependencies
-        working-directory: ./src/main/resources/static/js
+        working-directory: ./src/main/resources/static/javascript
         run: npm ci
       - name: Run Frontend Tests
-        working-directory: ./src/main/resources/static/js
+        working-directory: ./src/main/resources/static/javascript
         run: npm test
