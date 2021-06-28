@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 @RestController
@@ -59,14 +58,14 @@ public class UrlsController{
 
     @GetMapping("/{shortUrl}")
     public RedirectView redirectToLongUrl(@PathVariable String shortUrl){
-        Url resUrl = urlService.findByShortUrl(shortUrl);
+        Url resUrl = urlService.findByShortUrl("https://shortink.herokuapp.com/" + shortUrl);
         RedirectView redirectView = new RedirectView();
         if (resUrl == null){
             redirectView.setUrl(Endpoints.INVALID);
             return redirectView;
         }
         if (urlService.isUrlValid(resUrl)) {
-            logger.info(resUrl.toString());
+            logger.info("redirect: " + resUrl.toString());
             redirectView.setUrl(resUrl.getLongUrl());
             return redirectView;
         }

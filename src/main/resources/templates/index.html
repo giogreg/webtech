@@ -14,8 +14,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/vue-cookies@1.5.12/vue-cookies.js"></script>
-    <script src="#" th:src="@{/javascript/anonymous-form.js}" defer></script>
-    <script src="#" th:src="@{/javascript/user-form.js}" defer></script>
+    <script type="module" src="#" th:src="@{/javascript/main.js}" defer></script>
 </head>
 <body>
 <header>
@@ -45,8 +44,10 @@
             <div id="centerBar" class="centerBar">
                 <div id="formBoxContainer" class="formBoxContainer">
                     <div sec:authorize="isAnonymous()" id="anonymousApp">
+                        <anonymous-form></anonymous-form>
                     </div>
                     <div sec:authorize="isAuthenticated()" id="userApp">
+                        <user-form></user-form>
                     </div>
                 </div>
             </div>

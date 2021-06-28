@@ -1,11 +1,11 @@
-const anonymousApp = Vue.createApp({
+export default {
     template: `
         <div class="row rounded-3 p-3 mt-5 mx-5 bg-white text-dark">
             <div class="col">
                 <input type="text" class="form-control" v-model="longUrl" placeholder="Shorten your Link" ref="urlInput" @keyup.enter="create()">
             </div>
             <div class="col-auto">
-                <a role="button" class="btn btn-info btn-width-110" @click="create()">Create</a>
+                <a id="create" role="button" class="btn btn-info btn-width-110" @click="create()">Create</a>
             </div>
         </div>
         <div v-if="show">
@@ -51,6 +51,4 @@ const anonymousApp = Vue.createApp({
             navigator.clipboard.writeText(shortUrl);
         }
     }
-});
-
-anonymousApp.mount('#anonymousApp');
+}

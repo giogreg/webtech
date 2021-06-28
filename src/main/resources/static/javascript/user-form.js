@@ -1,4 +1,4 @@
-const userApp = Vue.createApp({
+export default {
     template: `
         <div class="row rounded-3 p-3 mt-5 mx-5 bg-white text-dark">
             <div class="col">
@@ -31,24 +31,23 @@ const userApp = Vue.createApp({
         };
     },
     methods: {
-        setUser(callback) {
+        setUser() {
             axios.get('/users').then(resp => {
                     console.log(resp.data.attributes.sub);
                     this.user = resp.data.attributes.sub;
-                    callback()
             })
         },
         loadUrls() {
             axios.get('/urls/' + this.user)
                 .then((response) => {
                     this.urls = response.data;
-                    this.addQrCode(this.urls);
+                    this.addSettings(this.urls);
                     console.log(response.data);
                 }, (error) => {
                     console.log(error);
                 })
         },
-        addQrCode(urls) {
+        addSettings(urls) {
             for (let url of urls) {
                 url.buttonName = 'QR-Code';
                 url.show = false;
@@ -104,8 +103,8 @@ const userApp = Vue.createApp({
                 this.urls[index].show = false;
             } else {
                 this.createQrCode(index);
-                this.urls[index].buttonName = 'Close';
                 this.urls[index].show = true;
+                this.urls[index].buttonName = 'Close';
             }
         },
     },
@@ -114,6 +113,4 @@ const userApp = Vue.createApp({
             this.loadUrls()
         })
     }
-});
-
-userApp.mount('#userApp');
+}
