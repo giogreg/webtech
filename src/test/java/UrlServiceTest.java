@@ -1,5 +1,4 @@
 import com.webtech.demo.model.Url;
-import com.webtech.demo.repository.UrlRepository;
 import com.webtech.demo.service.UrlService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,8 +16,8 @@ public class UrlServiceTest {
     @Mock
     private Url urlMock;
 
-    @Mock
-    private UrlRepository urlRepository;
+//    @Mock
+//    private UrlRepository urlRepository;
 
     @InjectMocks
     private UrlService urlService;
