@@ -31,10 +31,11 @@ export default {
         };
     },
     methods: {
-        setUser() {
+        setUser(callback) {
             axios.get('/users').then(resp => {
                     console.log(resp.data.attributes.sub);
                     this.user = resp.data.attributes.sub;
+                    callback()
             })
         },
         loadUrls() {
